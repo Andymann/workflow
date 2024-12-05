@@ -15,7 +15,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-          hostname
+          echo Hostname of the runber is $(hostname)
           echo Username is ${{github.repository_owner}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
