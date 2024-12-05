@@ -4,8 +4,6 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-24.04
-      outputs:
-        runner: ${{ steps.step1.outputs.runner }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -17,6 +15,6 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-          echo "hostname: $(hostname)"
+          hostname
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
