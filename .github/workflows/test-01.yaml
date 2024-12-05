@@ -16,6 +16,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
           hostname
-          ls ${{github.repository_owner}}
+          echo Username is ${{github.repository_owner}}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
