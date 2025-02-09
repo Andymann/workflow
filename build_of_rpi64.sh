@@ -1,3 +1,5 @@
+# curl -sLf https://raw.githubusercontent.com/Andymann/workflow/refs/heads/main/build_of_rpi64.sh|bash -
+
 #!/usr/bin/env bash
 
 sudo apt-get clean -y
