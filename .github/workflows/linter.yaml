@@ -1,0 +1,29 @@
+
+name: Linter
+    #needs: [ecr-login]
+    on:
+        workflow_dispatch:
+            pull_request:
+                types: [opened, synchronize, reopened, edited]
+            branches:
+            - main
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    container:
+        image: ${{ needs.ecr-login.outputs.registry }}/ops-infrastructure.iac-linter:latest
+        credentials:
+            username: ${{ needs.ecr-login.outputs.docker-username }}
+            password: ${{ needs.ecr-login.outputs.docker-password }}
+    strategy:
+        fail-fast: true
+        max-parallel: 1
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Linter Run
+        run: |
+          git config --global --add safe.directory $(pwd)
+          pre-commit run -c ./.pre-commit-config.yaml -a
